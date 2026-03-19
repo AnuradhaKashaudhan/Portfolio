@@ -1,7 +1,5 @@
-/*
-  Netlify Configuration File
-  Used to fix MIME type issues for module scripts on Netlify.
-*/
+# Netlify Configuration File
+
 
 [[headers]]
   for = "/*"
