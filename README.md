@@ -13,7 +13,7 @@
 ## 🌐 Live Website
 
 **Portfolio:**  
-https://cypher-canvas-hub.lovable.app
+https://portfolio-anuradhak.netlify.app/
 
 ---
 
