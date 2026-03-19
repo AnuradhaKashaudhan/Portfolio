@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 16%;
+
+    /* Primary Blue instead of Cyan */
+    --primary: 220 90% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Violet Secondary */
+    --secondary: 270 60% 50%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 210 15% 90%;
+    --muted-foreground: 220 15% 10%;
+
+    --accent: 270 60% 50%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 220 90% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom Colors */
+    --cyan: 220 90% 40%;
+    --cyan-glow: 220 90% 50%;
+    --violet: 270 60% 50%;
+    --violet-glow: 270 60% 60%;
+    --charcoal: 210 20% 95%;
+    --charcoal-light: 210 20% 90%;
+
+    /* Glassmorphism */
+    --glass-bg: 210 20% 98% / 0.8;
+    --glass-border: 220 15% 80% / 0.5;
+
+    /* Sidebar */
+    --sidebar-background: 210 20% 95%;
+    --sidebar-foreground: 220 15% 10%;
+    --sidebar-primary: 220 90% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 270 60% 50%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 220 15% 85%;
+    --sidebar-ring: 220 90% 40%;
+  }
+
+  .dark {
+    /* Dark Futuristic Theme */
+    --background: 0 0% 16%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 16%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Primary Blue instead of Cyan */
+    --primary: 220 90% 60%;
+    --primary-foreground: 0 0% 16%;
+
+    /* Violet Secondary */
+    --secondary: 270 80% 60%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 210 20% 95%;
+
+    --accent: 270 80% 60%;
+    --accent-foreground: 210 20% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 220 90% 60%;
+
+    /* Custom Colors */
+    --cyan: 220 90% 60%;
+    --cyan-glow: 220 90% 70%;
+    --violet: 270 80% 60%;
+    --violet-glow: 270 80% 70%;
+    --charcoal: 220 15% 8%;
+    --charcoal-light: 220 15% 12%;
+
+    /* Glassmorphism */
+    --glass-bg: 220 15% 10% / 0.6;
+    --glass-border: 220 15% 25% / 0.3;
+
+    /* Sidebar */
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 220 90% 60%;
+    --sidebar-primary-foreground: 0 0% 16%;
+    --sidebar-accent: 270 80% 60%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 220 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  html {
+    /* scroll-behavior: smooth is intentionally removed — Lenis handles all smooth scrolling */
+  }
+}
+
+@layer components {
+  /* Glassmorphism */
+  .glass {
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border rounded-xl shadow-lg;
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--border) / 0.4);
+    box-shadow: 0 10px 30px -10px rgba(51, 51, 51, 0.5); /* dark grey shadow for light theme */
+  }
+
+  .dark .glass-card {
+    box-shadow: 0 10px 30px -10px hsl(270 80% 60% / 0.3); /* violet/dark blue shadow for dark theme */
+  }
+
+  /* Glow Effects */
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(185 100% 50% / 0.4),
+                0 0 40px hsl(185 100% 50% / 0.2),
+                0 0 60px hsl(185 100% 50% / 0.1);
+  }
+
+  .glow-violet {
+    box-shadow: 0 0 20px hsl(270 80% 60% / 0.4),
+                0 0 40px hsl(270 80% 60% / 0.2),
+                0 0 60px hsl(270 80% 60% / 0.1);
+  }
+
+  .glow-border {
+    @apply relative;
+  }
+
+  .glow-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(135deg, hsl(185 100% 50%), hsl(270 80% 60%));
+    padding: 3px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      opacity: 0.6;
+      filter: blur(0px);
+    }
+    50% {
+      opacity: 1;
+      filter: blur(2px);
+    }
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(185 100% 50%), hsl(270 80% 60%));
+  }
+
+  /* Skill Pill */
+  .skill-pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300;
+    background: hsl(var(--muted));
+    border-color: hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+
+  .skill-pill:hover {
+    border-color: hsl(185 100% 50% / 0.5);
+    box-shadow: 0 0 15px hsl(185 100% 50% / 0.2);
+  }
+
+  /* Cursor blink for typing effect */
+  .cursor-blink::after {
+    content: '|';
+    @apply ml-1 animate-pulse text-primary;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Code font */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(185 100% 50% / 0.5);
+  }
+
+  .bg-grid {
+    background-image: 
+      linear-gradient(hsl(220 15% 15% / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(220 15% 15% / 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+}
